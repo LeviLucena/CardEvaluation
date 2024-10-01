@@ -1,1 +1,58 @@
-# card
+# Card Group Evaluation
+
+## 📖 Descrição
+
+O **Card Group Evaluation** é uma aplicação web que permite avaliar e monitorar o desempenho de colaboradores e do cliente e/ou fornecedor de forma interativa. Através de um sistema de notas e gráficos, os usuários podem registrar avaliações em diversas categorias, visualizando as mudanças ao longo do tempo. A interface é intuitiva e permite que informações sejam editadas diretamente, facilitando o uso. Estes cards podem ser usados no corpo de uma mensagem acompanhado de um relatório corporativo.
+
+![image](https://github.com/user-attachments/assets/9195c1a0-e84e-465e-abfe-9701a6d5c714)
+![image](https://github.com/user-attachments/assets/9e59ed84-d089-443e-9703-a60151f7022a)
+
+## 🛠 Tecnologias
+
+Este projeto utiliza as seguintes tecnologias:
+
+- **HTML5**: Estruturação da página web.
+- **CSS3**: Estilização da interface.
+- **JavaScript**: Lógica interativa para manipulação de avaliações e gráficos.
+- **Chart.js**: Biblioteca para criação de gráficos interativos.
+
+## 🚀 Como Implementar
+
+### Pré-requisitos
+
+Antes de começar, você precisa ter o seguinte instalado:
+
+- Um navegador moderno (Chrome, Firefox, etc.)
+- Um editor de texto ou IDE para edição do código (como Visual Studio Code)
+
+### 📝 Passos para Implementação
+
+1. **Clone o Repositório**
+
+   Se o projeto estiver hospedado em um repositório Git, clone-o usando:
+   ```
+   git clone <URL do repositório>
+   ```
+### 📂 Abra o Projeto
+
+Navegue até o diretório do projeto e abra o arquivo `index.html` em seu editor de texto.
+
+### 🗃️ Verifique os Caminhos das Imagens
+
+Certifique-se de que os caminhos das imagens no código estão corretos. O exemplo usa caminhos locais que podem não funcionar se você mover os arquivos. Ajuste os caminhos conforme necessário.
+
+### 🌐 Abra em um Navegador
+
+Abra o arquivo `index.html` em um navegador de sua escolha. Você pode fazer isso arrastando o arquivo para a janela do navegador ou usando o menu "Abrir arquivo".
+
+### 🖱️ Interaja com a Aplicação
+
+- Edite as informações dos colaboradores diretamente na interface.
+- Ajuste as notas nas diferentes categorias utilizando os campos numéricos.
+- Visualize as atualizações nos gráficos de desempenho e no gauge de avaliação.
+  
+## 🤝 Contribuições
+Contribuições são bem-vindas! Se você gostaria de sugerir melhorias ou relatar um problema, sinta-se à vontade para abrir uma issue ou enviar um `pull request`.
+
+## 📝 Licença
+Este projeto está licenciado sob a Licença MIT.
