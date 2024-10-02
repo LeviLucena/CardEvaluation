@@ -11,11 +11,13 @@ O **Card Group Evaluation** é uma aplicação web que permite avaliar e monitor
 
 Este projeto utiliza as seguintes tecnologias:
 
-- **API OPENAI**: Lógica de preencher os campos corretamente usando IA modelo gpt-3.5-turbo
-- **HTML5**: Estruturação da página web.
-- **CSS3**: Estilização da interface.
-- **JavaScript**: Lógica interativa para manipulação de avaliações e gráficos.
-- **Chart.js**: Biblioteca para criação de gráficos interativos.
+- **HTML5:** Estrutura básica da página e elementos interativos.
+- **CSS3:** Estilização e design responsivo da interface do usuário.
+- **JavaScript:** Lógica de interação, manipulação do DOM e comunicação com a API. Uso de funções assíncronas para chamadas de API.
+- **Chart.js:** Biblioteca para criação do gráfico de histórico de notas.
+- **API da OpenAI:** Para processamento de texto e preenchimento de campos automaticamente.
+- **SVG:** Para a representação gráfica do gauge e das estrelas.
+- **Web Browser:** A aplicação deve ser testada e otimizada para os principais navegadores (Chrome, Firefox, Safari, etc.).
 
 ## 🚀 Como Implementar
 
