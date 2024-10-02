@@ -25,6 +25,7 @@ Este projeto utiliza as seguintes tecnologias:
 
 Antes de começar, você precisa ter o seguinte instalado:
 
+- um provedor de hospedagem e um domínio.
 - Um navegador moderno (Chrome, Firefox, etc.)
 - Um editor de texto ou IDE para edição do código (como Visual Studio Code)
 
