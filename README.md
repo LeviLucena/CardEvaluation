@@ -34,7 +34,7 @@ Antes de começar, você precisa ter o seguinte instalado:
 
    Se o projeto estiver hospedado em um repositório Git, clone-o usando:
    ```
-   git clone <URL do repositório>
+   git clone https://github.com/LeviLucena/CardEvaluation.git
    ```
 ### 📂 Abra o Projeto
 
