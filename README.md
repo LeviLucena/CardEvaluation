@@ -11,6 +11,7 @@ O **Card Group Evaluation** é uma aplicação web que permite avaliar e monitor
 
 Este projeto utiliza as seguintes tecnologias:
 
+- **API OPENAI**: Lógica de preencher os campos corretamente usando IA modelo gpt-3.5-turbo
 - **HTML5**: Estruturação da página web.
 - **CSS3**: Estilização da interface.
 - **JavaScript**: Lógica interativa para manipulação de avaliações e gráficos.
