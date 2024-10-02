@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
-<!-- ====================================================================== -->
-<!-- Desenvolvido por Levi Lucena - linkedin.com/in/levilucena -->
-<!-- ====================================================================== -->
 
 <head>
     <base href="https://stefanini-group-evaluation.com/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stefanini Group Evaluation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Stefanini Group Evaluation</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -183,6 +184,8 @@
         }
 
         .textarea-container {
+            margin-top: 20px;
+            /* Adiciona espaço acima do contêiner */
             background-color: #ffffff;
             border-radius: 15px;
             padding: 20px;
@@ -190,6 +193,13 @@
             margin-left: 50px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border: 1px solid #ccc;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            margin-top: 5px;
+            color: black;
+            /* Adiciona esta linha para mudar a cor do texto */
         }
     </style>
 </head>
@@ -280,8 +290,30 @@
     </div>
 
     <div class="textarea-container">
-        <textarea id="inputText" rows="5" style="width: 100%;"></textarea>
-        <button onclick="addRow()">Adicionar</button>
+        <textarea id="inputText" class="form-control" rows="5" style="width: 100%;"></textarea>
+        <br>
+        <button onclick="addRow()" class="btn btn-primary">Adicionar</button>
+        <button onclick="toggleInputFields()" class="btn btn-warning">Ocultar Campos</button>
+
+        <script>
+            function toggleInputFields() {
+                const inputs = [
+                    document.getElementById('qualityInput'),
+                    document.getElementById('communicationInput'),
+                    document.getElementById('managementInput'),
+                    document.getElementById('innovationInput'),
+                    document.getElementById('partnershipInput'),
+                    document.getElementById('deadlineInput')
+                ];
+
+                inputs.forEach(input => {
+                    input.style.visibility = (input.style.visibility === 'hidden' ? 'visible' : 'hidden');
+                    input.style.height = (input.style.visibility === 'hidden' ? '0' : 'auto'); // Controla a altura para evitar espaço desnecessário
+                });
+            }
+
+        </script>
+
     </div>
 
     <script>
@@ -295,12 +327,12 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer SUA CHAVE API AQUI` // Substitua por sua chave da API
+                        'Authorization': `Bearer SUA CHAVE API OPENAI AQUI` // Substitua por sua chave da API
                     },
                     body: JSON.stringify({
                         model: "gpt-3.5-turbo",
                         messages: [
-                            { role: "user", content: `Por favor, preencha os campos a seguir a partir do seguinte texto: "${inputText}". A estrutura do texto é: CLIENTE, CONTATO, CARGO, SERVIÇO, QUALIDADE, COMUNICAÇÃO, GESTÃO, INOVAÇÃO, PRAZO, ANO1, ANO2, ANO3, ANO4, ANO5. No caso do texto fornecido: "USIMINAS Anderson Silva Almeida Coordenador de Operações e Infraestrutura 3 3 3 5 4 Outsourcing 8 9 10 9 8", o resultado esperado deve ser estruturado assim: CLIENTE: USIMINAS, CONTATO: Anderson Silva Almeida, CARGO: Coordenador de Operações e Infraestrutura, SERVIÇO: Outsourcing, QUALIDADE: 3, COMUNICAÇÃO: 3, GESTÃO: 3, INOVAÇÃO: 5, PRAZO: 4, ANO1: 8, ANO2: 9, ANO3: 10, ANO4: 9, ANO5: 8.` }
+                            { role: "user", content: `Por favor, preencha os campos a seguir a partir do seguinte texto: "${inputText}". A estrutura do texto é: CLIENTE, CONTATO, CARGO, SERVIÇO, QUALIDADE, COMUNICAÇÃO, GESTÃO, INOVAÇÃO, PARCERIA, PRAZO, ANO1, ANO2, ANO3, ANO4, ANO5. **Mantenha a ordem original dos números de avaliação e não os altere.** Por exemplo, para o texto "USIMINAS Anderson Silva Almeida Coordenador de Operações e Infraestrutura 3 3 3 5 4 1 Outsourcing 8 9 10 9 8", o resultado esperado deve ser estruturado assim: CLIENTE: USIMINAS, CONTATO: Anderson Silva Almeida, CARGO: Coordenador de Operações e Infraestrutura, SERVIÇO: Outsourcing, QUALIDADE: 3, COMUNICAÇÃO: 3, GESTÃO: 3, INOVAÇÃO: 5, PARCERIA: 4, PRAZO: 1, ANO1: 8, ANO2: 9, ANO3: 10, ANO4: 9, ANO5: 8.` }
                         ]
                     })
                 });
@@ -330,7 +362,7 @@
                 console.log('Structured Data:', structuredData);
 
                 // Agora vamos parsear a resposta esperada da IA
-                const regex = /CLIENTE:\s*(.*),\s*CONTATO:\s*(.*),\s*CARGO:\s*(.*),\s*SERVIÇO:\s*(.*),\s*QUALIDADE:\s*(\d+),\s*COMUNICAÇÃO:\s*(\d+),\s*GESTÃO:\s*(\d+),\s*INOVAÇÃO:\s*(\d+),\s*PRAZO:\s*(\d+),\s*ANO1:\s*(\d+),\s*ANO2:\s*(\d+),\s*ANO3:\s*(\d+),\s*ANO4:\s*(\d+),\s*ANO5:\s*(\d+)/;
+                const regex = /CLIENTE:\s*(.*),\s*CONTATO:\s*(.*),\s*CARGO:\s*(.*),\s*SERVIÇO:\s*(.*),\s*QUALIDADE:\s*(\d+),\s*COMUNICAÇÃO:\s*(\d+),\s*GESTÃO:\s*(\d+),\s*INOVAÇÃO:\s*(\d+),\s*PARCERIA:\s*(\d+),\s*PRAZO:\s*(\d+),\s*ANO1:\s*(\d+),\s*ANO2:\s*(\d+),\s*ANO3:\s*(\d+),\s*ANO4:\s*(\d+),\s*ANO5:\s*(\d+)/;
                 const matches = structuredData.match(regex);
 
                 if (matches) {
@@ -342,12 +374,13 @@
                     const comunicacao = matches[6].trim();
                     const gestao = matches[7].trim();
                     const inovacao = matches[8].trim();
-                    const prazo = matches[9].trim();
-                    const ano1 = matches[10].trim();
-                    const ano2 = matches[11].trim();
-                    const ano3 = matches[12].trim();
-                    const ano4 = matches[13].trim();
-                    const ano5 = matches[14].trim();
+                    const parceria = matches[9].trim();
+                    const prazo = matches[10].trim();
+                    const ano1 = matches[11].trim();
+                    const ano2 = matches[12].trim();
+                    const ano3 = matches[13].trim();
+                    const ano4 = matches[14].trim();
+                    const ano5 = matches[15].trim();
 
                     // Preencher informações no card
                     document.querySelector('.nameb').textContent = cliente;
@@ -358,7 +391,8 @@
                     document.getElementById('communicationInput').value = comunicacao;
                     document.getElementById('managementInput').value = gestao;
                     document.getElementById('innovationInput').value = inovacao;
-                    document.getElementById('partnershipInput').value = prazo;
+                    document.getElementById('partnershipInput').value = parceria
+                    document.getElementById('deadlineInput').value = prazo;
 
                     // Preencher os anos no histórico
                     document.querySelector('span[name="ANO1"]').textContent = ano1;
