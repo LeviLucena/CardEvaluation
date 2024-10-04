@@ -2,7 +2,7 @@
 
 ## 📖 Descrição
 
-O **Card Group Evaluation** é uma aplicação web que permite avaliar e monitorar o desempenho de colaboradores e do cliente e/ou fornecedor de forma interativa. Através de um sistema de notas e gráficos, os usuários podem registrar avaliações em diversas categorias, visualizando as mudanças ao longo do tempo. A interface é intuitiva e permite que informações sejam editadas diretamente, facilitando o uso. Estes cards podem ser usados no corpo de uma mensagem acompanhado de um relatório corporativo.
+O **Card Group Evaluation** ou NPS (Net Promoter Score) é uma aplicação web que permite avaliar e monitorar o desempenho de colaboradores e do cliente e/ou fornecedor de forma interativa ou uma métrica que mede a satisfação e a lealdade dos clientes em relação a uma empresa, produto ou serviço. Através de um sistema de notas e gráficos, os usuários podem registrar avaliações em diversas categorias, visualizando as mudanças ao longo do tempo. A interface é intuitiva e permite que informações sejam editadas diretamente, facilitando o uso. Estes cards podem ser usados no corpo de uma mensagem acompanhado de um relatório corporativo.
 
 ![image](https://github.com/user-attachments/assets/9195c1a0-e84e-465e-abfe-9701a6d5c714)
 ![image](https://github.com/user-attachments/assets/9e59ed84-d089-443e-9703-a60151f7022a)
