@@ -14,6 +14,7 @@ Este projeto utiliza as seguintes tecnologias:
 - **HTML5:** Estrutura básica da página e elementos interativos.
 - **CSS3:** Estilização e design responsivo da interface do usuário.
 - **JavaScript:** Lógica de interação, manipulação do DOM e comunicação com a API. Uso de funções assíncronas para chamadas de API.
+- **HTML2CANVAS:** Permite capturar uma imagem de uma parte da página da web renderizada no navegador e convertê-la em um canvas. Basicamente, ela tira uma "foto" da seção da página que você especificar e a transforma em uma imagem em formato PNG ou JPEG.
 - **Chart.js:** Biblioteca para criação do gráfico de histórico de notas.
 - **API da OpenAI:** Para processamento de texto e preenchimento de campos automaticamente.
 - **SVG:** Para a representação gráfica do gauge e das estrelas.
