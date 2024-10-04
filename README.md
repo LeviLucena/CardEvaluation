@@ -49,7 +49,7 @@ Certifique-se de que os caminhos das imagens no código estão corretos. O exemp
 ### 🌐 Abra em um Navegador
 
 Abra o arquivo `index.html` em um navegador de sua escolha. Você pode fazer isso arrastando o arquivo para a janela do navegador ou usando o menu "Abrir arquivo".
-_obs: o arquivo indexIA.html contém um novo layout com novas funcionalidades._
+> **Obs:** O arquivo `indexIA.html` contém um novo layout com novas funcionalidades.
 
 ### 🖱️ Interaja com a Aplicação
 
