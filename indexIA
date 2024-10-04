@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
-
+<!-- ====================================================================== -->
+<!-- Desenvolvido por Levi Lucena - linkedin.com/in/levilucena -->
+<!-- ====================================================================== -->
 <head>
-    <base href="https://stefanini-group-evaluation.com/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Stefanini Group Evaluation</title>
 
@@ -29,7 +31,7 @@
             padding: 20px;
             width: 300px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-image: url('C:/Users/lglucena/OneDrive - Stefanini/Área de Trabalho/Outros/image/degrade.png');
+            background-image: url('image/degrade.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -59,7 +61,7 @@
 
         .info {
             margin-bottom: 15px;
-            background-image: url('C:/Users/lglucena/OneDrive - Stefanini/Área de Trabalho/Outros/image/transparente.png');
+            background-image: url('image/transparente.png');
             /* Substitua pelo caminho correto */
             background-size: cover;
             /* Ajusta o tamanho da imagem */
@@ -201,24 +203,55 @@
             color: black;
             /* Adiciona esta linha para mudar a cor do texto */
         }
+
+        .select-logo {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .form-label {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .form-select {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 2px solid #ced4da;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="card">
+    <div class="card" id="cardDiv">
         <div class="header">
-            <img src="C:\Users\lglucena\OneDrive - Stefanini\Área de Trabalho\Outros\image\3.webp"
-                alt="Stefanini Group logo" class="logo">
+            <img id="selectedLogo" src="image/3.webp" alt="Stefanini Group logo" class="logo">
         </div>
-        <div class="gauge-container">
-            <svg class="gauge" viewBox="0 0 100 50" width="100%" height="100%">
-                <image href="C:\Users\lglucena\OneDrive - Stefanini\Área de Trabalho\Outros\image\nota.png" width="100"
-                    height="55" />
-                <text x="50" y="47" text-anchor="middle" font-size="20" fill="white" id="gaugeText">8</text>
-                <path id="arrow" d="M50,15 L55,25 L45,25 Z" fill="white" transform="rotate(0 50 45)" />
-            </svg>
+
+        <div id="cardDiv">
+            <div class="gauge-container">
+                <img src="image/nota.png" alt="Nota" width="210" height="auto"
+                    style="position: absolute; top: 26px; right:23px; z-index: 1;" />
+
+                <div style="position: relative; width: 100%; height: 100%; z-index: 2;">
+                    <svg class="gauge" viewBox="0 0 100 50" width="100%" height="100%">
+                        <text x="50" y="48" text-anchor="middle" font-size="20" fill="white" id="gaugeText">8</text>
+                        <path id="arrow" d="M50,15 L55,25 L45,25 Z" fill="white" transform="rotate(0 50 45)" />
+                    </svg>
+                </div>
+            </div>
         </div>
+
+
         <div class="date" contenteditable="true">11-Jul-2024</div><br>
 
         <div class="info">
@@ -266,23 +299,23 @@
         <canvas id="historyChart" width="300" height="150"></canvas>
         <div class="history">
             <div class="history-item">
-                <div class="year" contenteditable="true">2001</div>
+                <div class="year" contenteditable="true">2024</div>
                 <span contenteditable="true" name="ANO1">10</span>
             </div>
             <div class="history-item">
-                <div class="year" contenteditable="true">2002</div>
+                <div class="year" contenteditable="true">2023</div>
                 <span contenteditable="true" name="ANO2">10</span>
             </div>
             <div class="history-item">
-                <div class="year" contenteditable="true">2003</div>
+                <div class="year" contenteditable="true">2022</div>
                 <span contenteditable="true" name="ANO3">9</span>
             </div>
             <div class="history-item">
-                <div class="year" contenteditable="true">2004</div>
+                <div class="year" contenteditable="true">2021</div>
                 <span contenteditable="true" name="ANO4">3</span>
             </div>
             <div class="history-item">
-                <div class="year" contenteditable="true">2005</div>
+                <div class="year" contenteditable="true">2020</div>
                 <span contenteditable="true" name="ANO5">9</span>
             </div>
         </div>
@@ -294,7 +327,141 @@
         <br>
         <button onclick="addRow()" class="btn btn-primary">Adicionar</button>
         <button onclick="toggleInputFields()" class="btn btn-warning">Ocultar Campos</button>
+        <button onclick="exportCardAsImage()" class="btn btn-success">Exportar como Imagem</button>
+        <p>
 
+            <!-- Função do botão selecionar logo -->
+            <script>
+                function changeLogo() {
+                    // Obtém o valor selecionado no dropdown (o caminho da imagem)
+                    var selectedLogoPath = document.getElementById("logoSelect").value;
+
+                    // Atualiza a logo no elemento <img> com o id "selectedLogo"
+                    document.getElementById("selectedLogo").src = selectedLogoPath;
+                }
+            </script>
+
+            <!-- Função do botão exportar como imagem -->
+            <script>
+                function exportCardAsImage() {
+                    try {
+                        const card = document.getElementById('cardDiv');
+
+                        if (!card) {
+                            console.error("Erro: O elemento com ID 'cardDiv' não foi encontrado.");
+                            alert("Erro: O card não foi encontrado na página.");
+                            return;
+                        }
+
+                        const images = card.getElementsByTagName('img');
+                        let loadedImages = 0;
+
+                        if (images.length === 0) {
+                            console.log("Não há imagens para carregar. Iniciando captura...");
+                            captureCard();
+                            return;
+                        }
+
+                        // Verifique também a imagem nota.png
+                        const notaImage = card.querySelector("svg .gauge image");
+                        const totalImages = images.length + (notaImage ? 1 : 0);
+
+                        function checkImages() {
+                            if (loadedImages === totalImages) {
+                                console.log("Todas as imagens estão carregadas. Iniciando captura...");
+                                setTimeout(captureCard, 100); // Adiciona um pequeno atraso antes da captura
+                            } else {
+                                console.log("Aguardando o carregamento das imagens...");
+                            }
+                        }
+
+                        for (let i = 0; i < images.length; i++) {
+                            if (images[i].complete) {
+                                loadedImages++;
+                            } else {
+                                images[i].addEventListener('load', () => {
+                                    loadedImages++;
+                                    checkImages();
+                                });
+                            }
+                        }
+
+                        if (notaImage) {
+                            if (notaImage.complete) {
+                                loadedImages++;
+                            } else {
+                                notaImage.addEventListener('load', () => {
+                                    loadedImages++;
+                                    checkImages();
+                                });
+                            }
+                        }
+
+                        checkImages();
+
+                    } catch (error) {
+                        console.error("Erro inesperado ao tentar exportar a imagem:", error);
+                        alert("Ocorreu um erro ao tentar exportar a imagem. Verifique o console para mais detalhes.");
+                    }
+                }
+
+                function captureCard() {
+                    try {
+                        const card = document.getElementById('cardDiv');
+
+                        // Captura o card usando html2canvas
+                        html2canvas(card, {
+                            useCORS: true,
+                            scale: 2
+                        }).then(canvas => {
+                            const link = document.createElement('a');
+                            link.href = canvas.toDataURL('image/png');
+                            link.download = 'card_image.png';
+                            link.click();
+                        }).catch(err => {
+                            console.error("Erro ao capturar o card como imagem:", err);
+                            alert("Erro ao gerar a imagem. Verifique o console para mais detalhes.");
+                        });
+                    } catch (error) {
+                        console.error("Erro inesperado na função 'captureCard':", error);
+                        alert("Erro na captura do card. Verifique o console para mais detalhes.");
+                    }
+                }
+            </script>
+
+
+            <!-- Adicionando o botão select com estilo Bootstrap -->
+        <div class="select-logo mb-3">
+            <label for="logoSelect" class="form-label">Selecione uma logo:</label>
+            <select id="logoSelect" class="form-select" onchange="changeLogo()">
+                <option value="image/logo/intelligenti.png">
+                    Intelligenti
+                </option>
+                <option value="image/logo/n1it.png">N1it
+                </option>
+                <option value="image/logo/necxt.png">
+                    Necxt
+                </option>
+                <option value="image/logo/Singulahr.png">
+                    Singulahr
+                </option>
+                <option value="image/logo/stefanini_cyber.png">
+                    Stefanini Cyber
+                </option>
+                <option value="image/logo/stefanini_group.webp">
+                    Stefanini Group
+                </option>
+                <option value="image/logo/teccloud.png">
+                    Teccloud
+                </option>
+                <option value="image/logo/woop.png">Woop
+                </option>
+            </select>
+        </div>
+
+        </script>
+
+        <!-- Funcão para ocultar os campos das estrelas -->
         <script>
             function toggleInputFields() {
                 const inputs = [
@@ -327,7 +494,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer SUA CHAVE API OPENAI AQUI` // Substitua por sua chave da API
+                        'Authorization': `Bearer SUA API OPENAI AQUI` // Substitua por sua chave da API
                     },
                     body: JSON.stringify({
                         model: "gpt-3.5-turbo",
@@ -455,28 +622,30 @@
 
         function updateGauge() {
             const historyItems = document.querySelectorAll('.history-item');
-            let lastScore = 0;
+            let firstScore = null;
 
-            // Busca a última nota no histórico
-            historyItems.forEach(item => {
-                const score = parseInt(item.querySelector('span').textContent);
+            // Busca a primeira nota no histórico
+            if (historyItems.length > 0) {
+                const score = parseInt(historyItems[0].querySelector('span').textContent);
                 if (!isNaN(score)) {
-                    lastScore = score; // Armazena a última nota
+                    firstScore = score; // Armazena a primeira nota
                 }
-            });
+            }
 
             const gaugeText = document.getElementById('gaugeText');
             const arrow = document.getElementById('arrow');
 
-            // Atualiza o texto do gauge com a última nota
-            gaugeText.textContent = lastScore;
+            if (firstScore !== null) {
+                // Atualiza o texto do gauge com a primeira nota
+                gaugeText.textContent = firstScore;
 
-            // Normaliza o valor para o gauge
-            const normalizedValue = (lastScore / 10) * 100; // Supondo que a nota máxima seja 10
+                // Normaliza o valor para o gauge
+                const normalizedValue = (firstScore / 10) * 100; // Supondo que a nota máxima seja 10
 
-            // Atualiza a rotação do ponteiro
-            const rotation = -90 + (normalizedValue * 1.8); // -90 a 90 graus
-            arrow.setAttribute('transform', `rotate(${rotation} 50 45)`);
+                // Atualiza a rotação do ponteiro
+                const rotation = -90 + (normalizedValue * 1.8); // -90 a 90 graus
+                arrow.setAttribute('transform', `rotate(${rotation} 50 45)`);
+            }
         }
 
         function renderHistoryChart() {
@@ -487,6 +656,13 @@
             historyItems.forEach(item => {
                 const year = item.querySelector('.year').textContent;
                 const score = item.querySelector('span').textContent;
+
+                // Substitui valores vazios ou "-" por 0
+                if (score === "" || score === "-") {
+                    score = "0";
+                    item.querySelector('span').textContent = "0"; // Atualiza visualmente também
+                }
+
                 years.push(year);
                 scores.push(parseInt(score));
             });
@@ -500,7 +676,7 @@
                 data: {
                     labels: years,
                     datasets: [{
-                        label: 'Notas por Ano',
+                        label: 'Média Anual',
                         data: scores,
                         borderColor: 'rgba(75, 192, 192, 1)',
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
