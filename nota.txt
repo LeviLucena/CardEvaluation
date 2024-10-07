@@ -1,0 +1,48 @@
+# Para ocultar completamente o eixo Y (incluindo a linha e os ticks, além dos números), você pode configurar a propriedade display: false diretamente no eixo Y.
+
+adicione as bibliotecas nesta ordem:
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <!-- Chart.js deve vir antes do plugin de datalabels -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+# em seguida na parte do layout grafico do histórico de notas, escreva esta estrutura
+
+
+options: {
+    responsive: true,
+    scales: {
+        y: {
+            display: false, // Oculta completamente o eixo Y (incluindo linha e ticks)
+            beginAtZero: true,
+        },
+        x: {
+            ticks: {
+                color: 'white'
+            }
+        }
+    },
+    plugins: {
+        legend: {
+            labels: {
+                color: 'white'
+            }
+        },
+        datalabels: {
+            display: true, // Garante que os rótulos sejam exibidos
+            color: 'white', // Cor do texto exibido
+            align: 'bottom', // Alinhamento do texto
+            font: {
+                weight: 'bold'
+            },
+            formatter: function (value) {
+                return value; // Retorna o valor da "Média Anual"
+            }
+        }
+    }
+},
+plugins: [ChartDataLabels] // Garante que o plugin Datalabels esteja ativado
