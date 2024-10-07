@@ -36,7 +36,7 @@ Antes de começar, você precisa ter o seguinte instalado:
 
    Se o projeto estiver hospedado em um repositório Git, clone-o usando:
    ```
-   git clone https://github.com/LeviLucena/CardEvaluation.git
+   git clone https://github.com/LeviLucena/NPS-Net-Promoter-Score.git
    ```
 ### 📂 Abra o Projeto
 
